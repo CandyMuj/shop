@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    	<class name="cn.itcast.shop.category.Category" table="category">
+    	<!-- 配置主键 -->
+    		<id name="cid" column="cid" >
+    			<generator class="native"/>
+    		</id>
+    		<property name="cname" column="cname"></property>
+    		<!-- 配置关联关系 -->
+    		<!-- 将set设置order by jsp页面上在数据库中查询出的内容会排序，不会随时变换位置。 -->
+    		<set name="categorySeconds" lazy="false" cascade="delete" order-by="csid">
+    			<key column="cid"></key>
+    			<one-to-many class="cn.itcast.shop.categorysecond.CategorySecond"/>
+    		</set>
+    	</class>
+    	
+</hibernate-mapping>
